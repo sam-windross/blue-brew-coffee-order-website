@@ -1,0 +1,93 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+body {
+    background-image:url(media/IMG_0085%20213kb.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Prompt', sans-serif;
+    background-color: white;
+    text-align: center;
+    
+}
+#background {
+    height: auto;
+}
+#container {
+    height: 96vh;
+}
+#form {
+    background-color: white;
+    padding: 3%;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    
+}
+#form p,t,i {
+    font-family: 'Prompt', sans-serif;
+    font-size: 2vw
+}
+#form input {
+    border: none;
+    border-bottom: 1px solid darkgrey;
+}
+#form button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    margin: 0.2vw;
+}
+#form select {
+    padding: 6px 6px;
+    border: none;
+    background-color: #f2f2f2;
+    font-family: 'Prompt', sans-serif;
+    margin-bottom: 2%;
+}
+#form h1,h4 {
+        font-family: 'Prompt', sans-serif;
+
+}
+#reset button {
+    background-color: white;
+    border: 2px solid black;
+    color: black;    
+}
+#menu {
+    position:relative;
+}
+#waypoint {
+    position:relative;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+    
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1vw;
+    text-decoration: none;
+    width: 14.93775vw;
+}
+li a:hover {
+    background-color: #111;
+}
+#footer {
+    background-color: white;
+    text-align: center;
+    padding: 0.7vw;
+    vertical-align: bottom;
+}

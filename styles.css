@@ -1,0 +1,141 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+body {
+    padding-left: 0%;
+    padding-right: 0%;
+    font-family: 'Prompt', sans-serif;
+    background-image: url(media/IMG_0062%20211kb.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+#screen1 {
+    /*background-image:url(media/Coffee%20at%20Blue%20Brew.svg);*/
+    background-repeat: no-repeat;
+    
+    
+    
+}
+#screen2 {
+    height: 100vh;
+    
+    background-size: cover;
+}
+#screen2h1 {
+    background-color: white;
+    padding: 25;
+    padding-left: 15vw;
+    padding-right: 15vw;
+
+}
+#screen2h1 p {
+    font-size: 24;
+
+}
+
+#screen2top {
+    height 20%;
+}
+#screen2h1 img {
+    width: 15vw
+}
+#screen3 {
+    padding: 3%;
+    background-color: white;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    height: 50vh;
+    margin-bottom: 10%;
+    
+}
+#container {
+    height: 96vh;
+}
+#button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    margin: 0.2vw;
+    background-color: white;
+    border: 2px solid black;
+    color: black;  
+}
+#input {
+    border: none;
+    border-bottom: 1.5px solid #cccccc;
+    text-decoration: none;
+    padding: 0.5vw;
+    margin-bottom: 0.5vh;
+    width: 30vw;
+    font-family: 'Prompt', sans-serif;
+    
+    
+}
+#textArea {
+    height: 15vh;
+    width: 70vw;
+    border: 3px solid #cccccc;
+	padding: 5px;
+    font-family: 'Prompt', sans-serif;
+}
+#menu {
+    position:relative;
+}
+#waypoint {
+    position:relative;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+    
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1vw;
+    text-decoration: none;
+    width: 14.93775vw;
+}
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+/*ul {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}*/
+#page1 {
+    background-color: white;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    padding-top: 2%;
+    padding-bottom: 6%;
+    margin-bottom: 30vh;
+    text-align: center;
+}
+textarea {
+    outline: none;
+}
+#footer {
+    background-color: white;
+    text-align: center;
+    padding: 0.7vw;
+}
+#map {
+    border: 1px solid lightgray;
+    
+}

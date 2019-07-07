@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+    <link rel="stylesheet" href="orderStyles.css">
+        <meta charset="utf-8">
+<title>Order - Blue Brew</title>
+</head>
+
+<body>
+<div id="menu">
+        <ul id='waypoint'>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order.html">Online Order</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        </div>
+<div id="container">
+    <div id="form">
+    <h1>Blue Brew Coffee</h1>
+    <div id="details">
+        <p>Please place order below:</p>
+        <form id="deliveryMethod">
+            <input checked="true" type="radio" value="0" name="deliveryMethod" onchange="distribution(true)">Pickup
+            <input type="radio" value="0" name="deliveryMethod" onchange="distribution(false)">Delivery
+        </form>
+        <i>Please note that a $1 delivery charge applies to all deliveries</i>
+        <p>Room Number (if applicable):</p>
+        <select id="rmPrfx">
+            <option value="noPrfx">-</option>
+            <option value="SC">SC</option>
+            <option value="JP">JP</option>
+            <option value="MC">MC</option>
+            <option value="EM">EM</option>
+            <option value="SP">SP</option>
+            <option value="G">G</option>
+            <option value="L">L</option>
+            <option value="W">W</option>
+        </select>
+        <select id='rmNumber'>
+            <option value="1">1</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            <option value="32">32</option>
+            <option value="33">33</option>
+            <option value="34">34</option>
+            <option value="35">35</option>
+            <option value="36">36</option>
+            <option value="37">37</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+        </select>
+        <select id="rmLetter">
+            <option value="noLtr">-</option>
+            <option value="a">A</option>
+            <option value="b">B</option>
+        </select>
+
+        <p>First Name: </p>
+        <input type="text" id="name">
+        <p>Phone Number (if applicable): </p>
+        <input type="number" id="phone">
+    </div>
+    <h3>Order:</h3>
+
+    <div id="orderQ">
+        <p>How many beverages would you like to order?</p>
+        <button onclick="drinkForm(1)">One</button>
+        <button onclick="drinkForm(2)">Two</button>
+        <button onclick="drinkForm(3)">Three</button>
+        <button onclick="drinkForm(4)">Four</button>
+        <button onclick="drinkForm(5)">Five</button>
+    </div>
+
+    <div id="beverages"></div>
+    <div id="order"></div>
+    <div id="cost"></div>
+
+
+    <br>
+    <div id="submit"></div>
+    <br>
+    <div id="reset"><button onclick="reset()">Start Over / Clear</button></div>
+</div>
+    </div>
+    <div id="background"></div>
+    <div id="footer"><h5>Blue Brew - Website designed by Sam Windross - Copyright 2016</h5></div>
+    <script>
+        //Global varibles are decleared here, they will not be reset unless the page is reloaded
+        var menu = ["Ristretto", "Short Black Espresso", "Long Black Espresso", "Macchiato", "Flat White", "Latte", "Cappuccino", "Mocha", "Hot Chocolate", "Chai Latte"];
+        var numberOfBeverages = 0;
+        var selectedOptions = [];
+        var delivery = false;
+        var drinkFormRun = false;
+
+        function distribution(pickup) {
+            if (pickup == false) {
+                delivery = true;
+            } else {
+                delivery = false;
+            }
+            //If the drinkform has been created, the price has been created and will need to be updated with the extra dollar.
+            if (drinkFormRun) {
+                menuChange(0);
+            }
+        }
+
+        function retrieve(id) {
+            return document.getElementById(id).value;
+        }
+        //Creates a forms for drink selection
+        function drinkForm(n) {
+            var options = ""
+            numberOfBeverages = n;
+            //Creating the <option>'s for the select menus created below
+            for (i = 0; i < menu.length; i++) {
+                options = options + "<option value='" + i + "r'>" + menu[i] + " (Regular)</option>" + "<option value='" + i + "l'>" + menu[i] + " (Large)</option>";
+            }
+            for (i = 0; i < n; i++) {
+                var bNumber = i + 1;
+                document.getElementById("beverages").innerHTML = document.getElementById("beverages").innerHTML + "<h4>Beverage " + bNumber + "</h4><select id='beverage " + i + "' onchange='menuChange(" + i + ")' >" + options + "</select>";
+                selectedOptions.push("0r");
+            }
+            //Removes order quantity buttons
+            document.getElementById("orderQ").innerHTML = "";
+            //Indicates that the drinkform has run for distrobution function
+            drinkFormRun = true;
+            //Runs menuChange for the first time to display starting price
+            menuChange(0);
+            //Places submit order button
+            document.getElementById('submit').innerHTML = "<button onclick='myFunction()'>Submit Order</button>";
+        }
+        //This function is run when the user selects a option from a drop down menu. It adds the price and displays it under the drop down menues.
+        function menuChange(menuNumber) {
+            var menu = "beverage " + menuNumber;
+            var code = retrieve(menu);
+            var size = code.charAt(1);
+            selectedOptions[menuNumber] = code;
+            var totalCost = 0;
+            if (delivery == true) {
+                totalCost = 1;
+            }
+            for (i = 0; i < selectedOptions.length; i++) {
+                console.log(selectedOptions[i].charAt(1))
+                if (selectedOptions[i].charAt(1) == 'r') {
+                    totalCost += 3;
+                } else {
+                    totalCost += 3.8;
+                }
+            }
+            document.getElementById("cost").innerHTML = "<h2>Cost: $" + totalCost.toFixed(2) + "</h2>";
+
+        }
+        //Deletes everything inside a div
+        function del(id) {
+            document.getElementById(id).innerHTML = "";
+        }
+        //Resets the page
+        function reset() {
+            window.location.reload();
+        }
+        //confirm order
+        function confirmOrder() {
+            alert("Your order is confirmed");
+            reset();
+        }
+
+        //Checks inputs for ilegal charicters and returns a boolian
+        function inputCheck() {
+            if (numberOfBeverages < 1) {
+                alert("Please select your beverages.");
+                return false;
+            }
+            var name = retrieve('name');
+            if (name.length > 32) {
+                alert("Please enter a name that is 32 or less letters long.");
+                return false;
+            }
+            if (name.length < 1) {
+                alert("Please enter your name.");
+                return false;
+            }
+            var sample = /^[A-Za-z]*$/;
+            if (sample.test(name)) {
+                console.log("name legal")
+            } else {
+                alert("Your name must only contain upper and lowercase letters.");
+                return false;
+            }
+            if (delivery) {
+                var phone = retrieve('phone');
+                console.log(phone);
+                if (phone.length < 1) {
+                    alert("Please enter a phone number");
+                    return false;
+                }
+                if (phone.length > 15) {
+                    alert("Please enter a phone number that is less that 16 digits long");
+                    return false;
+                }
+                sample = /^[0-9]*$/;
+                if (sample.test(phone)) {} else {
+                    alert("Your phone number must only contain digits 0 to 9");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        //this is the function that runs when the submit button is pressed
+        function myFunction() {
+            if (inputCheck()) {
+                //This is the start of the final alert output
+                var orderOutput = 'Blue Brew Lunchtime Cafe Order:'
+                    //This function adds a line to the final alert output
+                function writeOrder(line) {
+                    document.getElementById("order").innerHTML = document.getElementById("order").innerHTML + line;
+                }
+                var name = retrieve('name');
+                writeOrder("<p>Name: " + name);
+
+                var deliveryMethod = retrieve("deliveryMethod");
+                console.log('deliveryMethod:' + deliveryMethod);
+                if (deliveryMethod = '0') {
+                    console.log("PICKUP!!!");
+                }
+                var phone = retrieve("phone");
+
+                var roomNo = ' ';
+                var cost = 0
+                    //Take room number drop down boxes and turn them into a string
+                if (delivery) {
+                    console.log('Collecting room number');
+                    var rmPrfx = retrieve("rmPrfx");
+                    var rmNumber = retrieve("rmNumber");
+                    var rmLetter = retrieve('rmLetter');
+                    if (rmPrfx != 'noPrfx') {
+                        console.log("there is a prefix");
+                        roomNo = rmPrfx;
+                        roomNo = roomNo.concat(rmNumber);
+                    } else {
+                        roomNo = rmNumber;
+                    }
+                    if (rmLetter != 'noLtr') {
+                        roomNo = roomNo.concat(rmLetter);
+                    }
+                    writeOrder("<p>This order is for delivery ($1.00)</p>");
+                    writeOrder("<p>Room: " + roomNo + "</p>");
+                    writeOrder("<p>Phone Number: " + phone + "</p>");
+
+                } else {
+                    writeOrder("<p>This order is for pickup</p>")
+                }
+                //removes all irelivent elements
+                del("submit");
+                del("beverages");
+                del("details");
+                
+                //Adds a confirm order button
+                document.getElementById("submit").innerHTML = "<button onclick='confirmOrder()'>Confirm Order</button>";
+
+                for (i = 0; i < numberOfBeverages; i++) {
+                    var currentBeverage = "<p>" + menu[selectedOptions[i].charAt(0)];
+                    if (selectedOptions[i].charAt(1) == 'r') {
+                        currentBeverage = currentBeverage + " (Regular)  $3.00</p>";
+                        console.log("REGULAR - " + currentBeverage);
+                    } 
+                    else {
+                        currentBeverage = currentBeverage + " (Large)   $3.80</p>";
+                        console.log("LARGE" + currentBeverage);
+                    }
+                    writeOrder(currentBeverage);
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
